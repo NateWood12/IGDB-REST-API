@@ -1,10 +1,17 @@
 const axios = require("axios");
 const settings = require("../../config/settings");
 async function renderGamePage(req, res) {
-    let data = { game_id: req.params.id };
+    const response = await axios.get(
+        `${settings.ROOT}:${settings.PORT}/api/games/${req.params.id}`,
+        {
+            params: req.query,
+        }
+    );
+    data = response.data;
+
     res.render("game", {
         title: "Games!",
-        gameData: data,
+        gameData: data, 
     });
 }
 module.exports = { renderGamePage };
