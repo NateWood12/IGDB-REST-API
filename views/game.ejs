@@ -1,0 +1,90 @@
+<%- include('partials/header.ejs') %>
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="./">
+        <img src="/images/IGDBSearchLogo.svg" alt="" width="30" height="24">
+        Search All Games
+      </a>
+    </div>
+  </nav>
+<div class="container mt-5  overflow-hidden px-4" id="gameContainer">
+    <div class="row gx-5">
+        <div class="col-md-4">
+            <div class="p-2">
+                <img id="gameCover" src="http://images.igdb.com/igdb/image/upload/t_720p/co2362.jpg" class="img-fluid"/>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-3">
+                <h1 id="gameTitle">Super Mario Bros.</h1>
+                <p id="gameSummary">A side scrolling 2D platformer and first entry in the Super Mario franchise, Super Mario Bros. follows Italian plumber Mario as he treks across many levels of platforming challenges featuring hostile enemies to rescue Princess Peach from the evil king Bowser.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row gx-5 mt-3">
+        <div class="col-md-4">
+            <div class="p-3">
+                <h2>Genres</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <ul id="gameGenres"></ul>
+            </div>        
+        </div>
+        <div class="col-md-4">
+            <div class="p-3">
+                <h2>Game Modes</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <ul id="gameModes"></ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3">
+                <h2>Platforms</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <ul id="gamePlatforms"></ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="row  gx-5 mt-3">
+        <div class="col-md-12">
+            <div class="p-3">
+                <h2>Characters</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <div id="gameCharacters">
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row  gx-5 mt-3">
+        <div class="col-md-12">
+            <div class="p-3">
+                <h2>Websites</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <div id="gameWebsites">
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row  gx-5 mt-3" >
+        <div class="col-md-12">
+            <div class="p-3">
+                <h2>Screenshots</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <div id="gameScreenshots" class="row">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row  gx-5 mt-3" >
+        <div class="col-md-12">
+            <div class="p-3">
+                <h2>Similar Games</h2>
+                <div class="no-data"><p>No data found</p></div>
+                <div id="gameSimilar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer.ejs') %>

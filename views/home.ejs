@@ -1,0 +1,55 @@
+<%- include("partials/header.ejs") %>
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <span class="navbar-brand">
+            <img src="/images/IGDBSearchLogo.svg" alt="" width="30" height="24">
+            Welcome to the CMP Internet Game Database Search Page
+        </span>
+    </div>
+</nav>
+<header>
+    <div class="container">
+        <div class="row">
+            <h1 class="page-title">Games!!!</h1>
+        </div>
+        <div class="row">
+            <form method="GET">
+                <div class="input-group">
+                    <input type="text"
+                    class="form-control form-control-lg"
+                    placeholder="search"
+                    id="searchtext"
+                    name="like"
+                    value="<%= search %>"
+                    />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary btn-lg rounded-start-0 " type="submit" id="searchbtn">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" id="results">
+        <% for(game of gameData) { %>
+        <a href="/game/<%=game.game_id%>" class="unstyled-link text-decoration-none">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="<%=game.cover.replace("t_thumb", "t_720p")%>" alt="" class="card-img">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=game.name%></h5>
+                            <p class="card-text"><%=game.summary%></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% } %>
+    </div>
+
+</header>
+<%- include("partials/footer.ejs") %>
+
