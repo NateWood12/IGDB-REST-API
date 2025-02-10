@@ -11,7 +11,7 @@ async function renderHomePage(req, res) {
             }
         );
         data = response.data; //AM ADD THIS!!!!
-        for (game of data) {
+        for (let game of data) {
             const cover = await axios.get(
                 `${settings.ROOT}:${settings.PORT}/api/covers`,
                 {

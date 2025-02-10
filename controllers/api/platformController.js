@@ -2,8 +2,8 @@ const Platform = require("../../models/platform");
 
 async function getAllPlatforms(req, res) {
     try {
-        const { start = 0, limit = 50 } = req.query; //game?start=50&limit=30
-        const platforms = await Platform.getAllPlatforms(start, limit);
+        const { start = 0, limit = 50, gameid } = req.query; //game?start=50&limit=30
+        const platforms = await Platform.getAllPlatforms(start, limit, gameid);
         res.status(200).json(platforms);
     } catch (err) {
         console.log(err);

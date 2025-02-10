@@ -1,17 +1,9 @@
 <%- include('partials/header.ejs') %>
-<nav class="navbar navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="./">
-        <img src="/images/IGDBSearchLogo.svg" alt="" width="30" height="24">
-        Search All Games
-      </a>
-    </div>
-  </nav>
 <div class="container mt-5  overflow-hidden px-4" id="gameContainer">
     <div class="row gx-5">
         <div class="col-md-4">
             <div class="p-2">
-                <img id="gameCover" src="http://images.igdb.com/igdb/image/upload/t_720p/co2362.jpg" class="img-fluid"/>
+                <img id="gameCover" src="<%=gameData.cover.replace("t_thumb", "t_1080p")%>" class="img-fluid"/>
             </div>
         </div>
         <div class="col-md-8">
@@ -25,33 +17,58 @@
         <div class="col-md-4">
             <div class="p-3">
                 <h2>Genres</h2>
-                <div class="no-data"><p>No data found</p></div>
-                <ul id="gameGenres"></ul>
+                <% if(!gameData.genres || gameData.genres.length == 0){%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                <ul id="gameGenres">
+                    <% for(let genre of gameData.genres) { %>
+                        <li><%=genre.name%></li>
+                    <%}%>
+                </ul>
             </div>        
         </div>
         <div class="col-md-4">
             <div class="p-3">
                 <h2>Game Modes</h2>
-                <div class="no-data"><p>No data found</p></div>
+                <% if(!gameData.gameModes || gameData.gameModes.length == 0){%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                <ul id="gameModes">
+                    <% for(let gameMode of gameData.gameModes) { %>
+                        <li><%=gameMode.name%></li>
+                    <%}%>
                 <ul id="gameModes"></ul>
             </div>
+ 
         </div>
         <div class="col-md-4">
             <div class="p-3">
                 <h2>Platforms</h2>
-                <div class="no-data"><p>No data found</p></div>
+                <% if(!gameData.Platforms || gameData.Platforms.length == 0){%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                <ul id="Platforms">
+                    <% for(let Platform of gameData.Platforms) { %>
+                        <li><%=Platform.name%></li>
+                    <%}%>
                 <ul id="gamePlatforms"></ul>
             </div>
-
+ 
         </div>
     </div>
     <div class="row  gx-5 mt-3">
         <div class="col-md-12">
             <div class="p-3">
                 <h2>Characters</h2>
-                <div class="no-data"><p>No data found</p></div>
+                <% if(!gameData.Characters || gameData.Characters.length == 0){%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                <ul id="Characters">
+                    <% for(let Characters of gameData.Characters) { %>
+                        <li><%=Characters.name%></li>
+                    <%}%>
                 <div id="gameCharacters">
-    
+   
                 </div>
             </div>
         </div>
@@ -60,9 +77,14 @@
         <div class="col-md-12">
             <div class="p-3">
                 <h2>Websites</h2>
-                <div class="no-data"><p>No data found</p></div>
+                <% if(!gameData.Websites || gameData.Websites.length == 0){%>
+                    <div class="no-data"><p>No data found</p></div>
+                    <%}%>
+                <ul id="Websites">
+                    <% for(let Websites of gameData.Websites) { %>
+                        <li><a href="<%=Websites.url%>"><%=Websites.url%></a></li>
+                    <%}%>
                 <div id="gameWebsites">
-    
                 </div>
             </div>
         </div>
@@ -70,21 +92,43 @@
     <div class="row  gx-5 mt-3" >
         <div class="col-md-12">
             <div class="p-3">
-                <h2>Screenshots</h2>
-                <div class="no-data"><p>No data found</p></div>
+                <h2>Screenshots</h2>              
                 <div id="gameScreenshots" class="row">
+                    <% if(!gameData.Screenshots || gameData.Screenshots.length == 0){%>
+                        <div class="no-data"><p>No data found</p></div>
+                        <%}%>
+                            <% for(let Screenshots of gameData.Screenshots) { %>
+                                <div class="col-md-3">
+                                    <img class="w-100" src="<%=Screenshots.url.replace("t_thumb", "t_720p")%>" alt="No data found">
+                                </div>
+                        <%}%>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row  gx-5 mt-3" >
         <div class="col-md-12">
             <div class="p-3">
                 <h2>Similar Games</h2>
-                <div class="no-data"><p>No data found</p></div>
-                <div id="gameSimilar"></div>
+        <% for(let game of gameData.games) { %>
+            <a href="/game/<%= game.similar_game_id %>" class="plain">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="<%= game.cover.replace("t_thumb", "t_1080p")%>" class="card-img" alt="<%= game.similar_game_name %> cover">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <p class="card-title game-title"><%= game.similar_game_name %></p>
+                            <p class="card-text game-summary"><%= game.similar_game_summary %></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        <%} %>
+    </a>
     </div>
-</div>
+    </div>
+    </div>
 <%- include('partials/footer.ejs') %>
